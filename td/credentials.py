@@ -172,7 +172,7 @@ class TdCredentials():
 
         exp_time = self.refresh_token_expiration_time.timestamp() - 20
         now = datetime.now().timestamp()
-        return bool(exp_time < now)
+        return exp_time < now
 
     def from_token_dict(self, token_dict: dict) -> None:
         """Converts a token dicitonary to a `TdCredential`
@@ -263,7 +263,7 @@ class TdCredentials():
             >>> td_credential.to_dict()
         """
 
-        token_dict = {
+        return {
             'access_token': self._access_token,
             'refresh_token': self._refresh_token,
             'scope': self._scope,
@@ -273,8 +273,6 @@ class TdCredentials():
             'refresh_token_expiration_time': self.refresh_token_expiration_time.isoformat(),
             'access_token_expiration_time': self.access_token_expiration_time.isoformat(),
         }
-
-        return token_dict
 
     def _calculate_refresh_token_expiration(self, expiration_secs: int) -> None:
         """Calculates the number of seconds until the refresh token
@@ -342,7 +340,7 @@ class TdCredentials():
 
         exp_time = self.access_token_expiration_time.timestamp() - 20
         now = datetime.now().timestamp()
-        return bool(exp_time < now)
+        return exp_time < now
 
     def from_workflow(self) -> None:
         """Grabs an Access toke and refresh token using
@@ -456,8 +454,9 @@ class TdCredentials():
         data = {
             "response_type": "code",
             "redirect_uri": self.redirect_uri,
-            "client_id": self.client_id + "@AMER.OAUTHAP"
+            "client_id": f"{self.client_id}@AMER.OAUTHAP",
         }
+
 
         # url encode the data.
         params = urllib.parse.urlencode(data)
@@ -499,10 +498,11 @@ class TdCredentials():
         # Define the parameters of our access token post.
         data = {
             'grant_type': 'authorization_code',
-            'client_id': self.client_id + '@AMER.OAUTHAP',
+            'client_id': f'{self.client_id}@AMER.OAUTHAP',
             'code': self.authorization_code,
-            'redirect_uri': self.redirect_uri
+            'redirect_uri': self.redirect_uri,
         }
+
 
         if return_refresh_token:
             data['access_type'] = 'offline'

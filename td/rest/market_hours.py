@@ -71,13 +71,9 @@ class MarketHours():
             'date': date
         }
 
-        content = self.session.make_request(
-            method='get',
-            endpoint='marketdata/hours',
-            params=params
+        return self.session.make_request(
+            method='get', endpoint='marketdata/hours', params=params
         )
-
-        return content
 
     def get_market_hours(
         self,
@@ -122,10 +118,6 @@ class MarketHours():
             'date': date
         }
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=f'marketdata/{market}/hours',
-            params=params
+        return self.session.make_request(
+            method='get', endpoint=f'marketdata/{market}/hours', params=params
         )
-
-        return content

@@ -170,10 +170,8 @@ class PriceHistory():
             'needExtendedHoursData': extended_hours_needed
         }
 
-        content = self.session.make_request(
+        return self.session.make_request(
             method='get',
             endpoint=f'marketdata/{symbol}/pricehistory',
-            params=params
+            params=params,
         )
-
-        return content

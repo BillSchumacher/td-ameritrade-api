@@ -46,19 +46,18 @@ class StreamingServices():
             self.streaming_api_client.data_requests['requests']
         ) + 1
 
-        request = {
+        return {
             "service": None,
             "requestid": service_count,
             "command": None,
-            "account": self.streaming_api_client.user_principal_data['accounts'][0]['accountId'],
-            "source": self.streaming_api_client.user_principal_data['streamerInfo']['appId'],
-            "parameters": {
-                "keys": None,
-                "fields": None
-            }
+            "account": self.streaming_api_client.user_principal_data['accounts'][
+                0
+            ]['accountId'],
+            "source": self.streaming_api_client.user_principal_data[
+                'streamerInfo'
+            ]['appId'],
+            "parameters": {"keys": None, "fields": None},
         }
-
-        return request
 
     def quality_of_service(self, qos_level: Union[str, Enum]) -> None:
         """Quality of Service Subscription.
@@ -569,7 +568,7 @@ class StreamingServices():
         request = self._new_request_template()
         request['service'] = service
         request['command'] = 'SUBS'
-        request['parameters']['keys'] = venue + '-' + duration
+        request['parameters']['keys'] = f'{venue}-{duration}'
         request['parameters']['fields'] = '1'
         self.streaming_api_client.data_requests['requests'].append(request)
 

@@ -102,13 +102,9 @@ class Orders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/orders'
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=endpoint,
-            params=params
+        return self.session.make_request(
+            method='get', endpoint=endpoint, params=params
         )
-
-        return content
 
     def get_order(
         self,
@@ -142,12 +138,7 @@ class Orders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/orders/{order_id}'
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=endpoint
-        )
-
-        return content
+        return self.session.make_request(method='get', endpoint=endpoint)
 
     def get_orders_by_query(
         self,
@@ -221,13 +212,9 @@ class Orders():
         # Define the endpoint.
         endpoint = 'orders'
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=endpoint,
-            params=params
+        return self.session.make_request(
+            method='get', endpoint=endpoint, params=params
         )
-
-        return content
 
     def place_order(
         self,
@@ -277,13 +264,9 @@ class Orders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/orders'
 
-        content = self.session.make_request(
-            method='post',
-            endpoint=endpoint,
-            json_payload=order
+        return self.session.make_request(
+            method='post', endpoint=endpoint, json_payload=order
         )
-
-        return content
 
     def replace_order(
         self,
@@ -343,13 +326,9 @@ class Orders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/orders/{order_id}'
 
-        content = self.session.make_request(
-            method='put',
-            endpoint=endpoint,
-            json_payload=order
+        return self.session.make_request(
+            method='put', endpoint=endpoint, json_payload=order
         )
-
-        return content
 
     def cancel_order(
         self,
@@ -384,9 +363,4 @@ class Orders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/orders/{order_id}'
 
-        content = self.session.make_request(
-            method='delete',
-            endpoint=endpoint
-        )
-
-        return content
+        return self.session.make_request(method='delete', endpoint=endpoint)

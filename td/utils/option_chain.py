@@ -146,7 +146,7 @@ class OptionChainQuery():
             if isinstance(value, Enum):
                 value = value.value
 
-            if isinstance(value, datetime) or isinstance(value, date):
+            if isinstance(value, (datetime, date)):
                 value = value.isoformat()
 
             # Generate the API Key.
@@ -172,9 +172,7 @@ class OptionChainQuery():
     def _validate_strike_price(self) -> None:
         """Validates the Strike Price of the option."""
 
-        strike_price = getattr(self, 'strike')
-
-        if strike_price:
+        if strike_price := getattr(self, 'strike'):
             strike_price = round(strike_price, 2)
             setattr(self, 'strike', strike_price)
 
@@ -185,9 +183,7 @@ class OptionChainQuery():
 
         if isinstance(strategy, Enum):
             strategy = strategy.value
-        elif strategy is not None:
-            pass
-        else:
+        elif strategy is None:
             return
 
         if strategy == 'SINGLE':

@@ -62,13 +62,9 @@ class Instruments():
             'projection': projection
         }
 
-        content = self.session.make_request(
-            method='get',
-            endpoint='instruments',
-            params=params
+        return self.session.make_request(
+            method='get', endpoint='instruments', params=params
         )
-
-        return content
 
     def get_instrument(self, cusip: str) -> dict:
         """Get an instrument by CUSIP.
@@ -91,9 +87,6 @@ class Instruments():
             )
         """
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=f'instruments/{cusip}'
+        return self.session.make_request(
+            method='get', endpoint=f'instruments/{cusip}'
         )
-
-        return content

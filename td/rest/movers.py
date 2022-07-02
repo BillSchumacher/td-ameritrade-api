@@ -77,10 +77,6 @@ class Movers():
             'change': change
         }
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=f'marketdata/{index}/movers',
-            params=params
+        return self.session.make_request(
+            method='get', endpoint=f'marketdata/{index}/movers', params=params
         )
-
-        return content

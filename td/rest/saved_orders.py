@@ -50,12 +50,7 @@ class SavedOrders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/savedorders'
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=endpoint
-        )
-
-        return content
+        return self.session.make_request(method='get', endpoint=endpoint)
 
     def get_saved_order(
         self,
@@ -89,12 +84,7 @@ class SavedOrders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/savedorders/{saved_order_id}'
 
-        content = self.session.make_request(
-            method='get',
-            endpoint=endpoint
-        )
-
-        return content
+        return self.session.make_request(method='get', endpoint=endpoint)
 
     def place_saved_order(
         self,
@@ -144,13 +134,9 @@ class SavedOrders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/savedorders'
 
-        content = self.session.make_request(
-            method='post',
-            endpoint=endpoint,
-            json_payload=order
+        return self.session.make_request(
+            method='post', endpoint=endpoint, json_payload=order
         )
-
-        return content
 
     def replace_saved_order(
         self,
@@ -210,13 +196,9 @@ class SavedOrders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/savedorders/{saved_order_id}'
 
-        content = self.session.make_request(
-            method='put',
-            endpoint=endpoint,
-            json_payload=order
+        return self.session.make_request(
+            method='put', endpoint=endpoint, json_payload=order
         )
-
-        return content
 
     def cancel_saved_order(
         self,
@@ -251,9 +233,4 @@ class SavedOrders():
         # Define the endpoint.
         endpoint = f'accounts/{account_id}/savedorders/{saved_order_id}'
 
-        content = self.session.make_request(
-            method='delete',
-            endpoint=endpoint
-        )
-
-        return content
+        return self.session.make_request(method='delete', endpoint=endpoint)

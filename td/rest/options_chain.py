@@ -90,10 +90,6 @@ class OptionsChain():
         else:
             params = option_chain_dict
 
-        content = self.session.make_request(
-            method='get',
-            endpoint='marketdata/chains',
-            params=params
+        return self.session.make_request(
+            method='get', endpoint='marketdata/chains', params=params
         )
-
-        return content
